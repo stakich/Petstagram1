@@ -1,18 +1,24 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import BaseValidator
+from django.utils.deconstruct import deconstructible
 
 
-class FileSizeValidator(BaseValidator):
-    def __init__(self, limit_value):
-        super().__init__(limit_value * 1048567)
+@deconstructible
+class FileSizeValidator:
+    def __init__(self, file_size_mb: int, message=None):
+        self.file_size_mb = file_size_mb
+        self.message = message
 
-    def compare(self, file_size, limit_value):
-        return file_size > limit_value
+    @property
+    def message(self):
+        return self.__message
 
-    def clean(self, file):
-        return file_size
+    @message.setter
+    def message(self, value):
+        if value is None:
+            self.__message = "File is too large"
 
-    def deconstruct(self):
-        path, args, kwargs = super().deconstruct()
-        kwargs['limit_value'] = self.limit_value / 1048576  # Convert bytes back to MB
-        return path, args, kwargs
+        self.__message = value
+
+    def __call__(self, value):
+        if value.size > self.file_size_mb * 1024 * 1024:
+            return ValidationError(message=self.message)
