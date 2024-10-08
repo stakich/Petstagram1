@@ -5,8 +5,8 @@ from django.template.defaultfilters import slugify
 # Create your models here.
 class Pet(models.Model):
     name = models.CharField(max_length=30)
-    pet_photo = models.URLField()
-    date_of_birth = models.DateField(auto_now_add=True, null=True, blank=True)
+    personal_photo = models.URLField()
+    date_of_birth = models.DateField(null=True, blank=True)
     slug = models.SlugField(unique=True, null=False, blank=True, editable=False)
 
     def save(self, *args, **kwargs):

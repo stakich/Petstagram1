@@ -11,12 +11,12 @@ def add_photo_page(request):
 def show_photo_details(request, pk):
     photo = Photo.objects.get(pk=pk)
     photo_likes = photo.like_set.all()
-    photo_comments = photo.comments.all()
+    comments = photo.comments.all()
 
     context = {
         'photo': photo,
         'photo_likes': photo_likes,
-        'photo_comments': photo_comments
+        'comments': comments,  # Change this to 'comments' instead of 'photo_comments'
     }
 
     return render(request, 'photos/photo-details-page.html', context)
