@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from Petstagram.pets.models import Pet
 from Petstagram.pets import forms
+from Petstagram.common import forms
+from Petstagram.photos.models import Photo
+from Petstagram.common import forms
 
 
 # Create your views here.
@@ -37,10 +40,12 @@ def delete_pet_page(request, username, pet_slug):
 def pet_page_details(request, username, pet_slug):
     pet = Pet.objects.get(slug=pet_slug)
     all_photos = pet.photo_set.all()
+    comment_form = forms.CommentForm()
 
     context = {
         'pet': pet,
-        'all_photos': all_photos
+        'all_photos': all_photos,
+        'comment_form': comment_form
     }
 
     return render(request, 'pets/pet-details-page.html', context)
@@ -61,5 +66,7 @@ def edit_pet_page(request,username, pet_slug):
     context = {
         'form': form
     }
+
     return render(request, 'pets/pet-edit-page.html', context)
+
 
