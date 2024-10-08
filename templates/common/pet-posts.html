@@ -29,16 +29,16 @@
                 {% if photo_page %}
                 <div class="edit-delete-btns">
     
-                    <!-- Link to Edit Pet Photo Page -->
-                    <a href="{% url 'photo-edit' photo.pk %}">
-                        <img class="edit-img" src="{% static '/images/edit-pen-icon-6.jpg' %}"
-                             alt="edit button">
-                    </a>
-    
-                    <!-- Link to Delete Pet Photo Page -->
-                    <a href="{% url 'photo-delete' photo.pk %}">
-                        <img class="bin-img" src="{% static '/images/icon-remove-22.jpg' %}"
-                             alt="bin button">
+{#                    <!-- Link to Edit Pet Photo Page -->#}
+{#                    <a href="{% url 'photo-edit' photo.pk %}">#}
+{#                        <img class="edit-img" src="{% static '/images/edit-pen-icon-6.jpg' %}"#}
+{#                             alt="edit button">#}
+{#                    </a>#}
+{##}
+{#                    <!-- Link to Delete Pet Photo Page -->#}
+{#                    <a href="{% url 'photo-delete' photo.pk %}">#}
+{#                        <img class="bin-img" src="{% static '/images/icon-remove-22.jpg' %}"#}
+{#                             alt="bin button">#}
                     </a>
                 </div>
                 {% endif %}
@@ -65,9 +65,9 @@
                            {% endif %}                   
                         </a>
                     </span>
-{#                <a href="{% url 'share' photo.id %}">#}
-{#                    <i class="fa-solid fa-share"></i>#}
-{#                </a>#}
+                <a href="{% url 'share' photo.id %}">
+                    <i class="fa-solid fa-share"></i>
+                </a>
 
             </div>
         </div>
@@ -123,12 +123,12 @@
 {#                    </div>#}
 {#                </div>#}
 {#            </div>#}
-{#            <!-- End Comments Section -->#}
+            <!-- End Comments Section -->
 {#        {% endfor %}#}
 {##}
 {#        {% endif %}#}
-{#    #}
-{#        <!-- add comments section -->#}
+
+        <!-- add comments section -->
 {#        <div class="addComments">#}
 {##}
 {#            <form method="post" action="{% url 'comment' photo.pk %}">#}
@@ -137,6 +137,5 @@
 {#                <button type="submit">Post</button>#}
 {#            </form>#}
 {#        </div>#}
-        <!--  -->
     </div>
 </div>
